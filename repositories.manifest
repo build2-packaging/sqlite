@@ -3,4 +3,5 @@ summary: SQLite build2 package repository
 
 :
 role: prerequisite
-location: ../../zlib/zlib.git##HEAD
+#location: ../../zlib/zlib.git##HEAD
+location: https://git.build2.org/packaging/zlib/zlib.git##HEAD
