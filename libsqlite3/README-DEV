@@ -8,11 +8,13 @@ $ mkdir libsqlite3
 $ pushd libsqlite3
 $ ln -s ../../upstream/{sqlite3.c,sqlite3ext.h,sqlite3.h} .
 
-Also fix warnings that pop up with -Wall:
+Also apply the following patches:
 
 $ mv sqlite3.c sqlite3.c.orig
 $ cp sqlite3.c.orig sqlite3.c
-$ git apply ../fix-warnings.patch
+$ git apply ../fix-warnings.patch   # Fixes warnings that pop up with -Wall.
+$ git apply ../gcc-bug-115274.patch # See https://gcc.gnu.org/bugzilla/show_bug.cgi?id=115274 for details.
+
 $ popd
 
 Also note that patches are produced by commands similar to the following:

@@ -12,6 +12,7 @@
 *.pcm
 *.ifc
 *.so
+*.dylib
 *.dll
 *.a
 *.lib
@@ -22,6 +23,10 @@
 *.exe.dlls/
 *.exe.manifest
 *.pc
+
+# Compilation database.
+#
+compile_commands.json
 
 sqlite3
 

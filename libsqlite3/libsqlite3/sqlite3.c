@@ -34709,8 +34709,7 @@ SQLITE_PRIVATE int sqlite3IsOverflow(double x){
 ** than 1GiB) the value returned might be less than the true string length.
 */
 SQLITE_PRIVATE int sqlite3Strlen30(const char *z){
-  if( z==0 ) return 0;
-  return 0x3fffffff & (int)strlen(z);
+  return 0x3fffffff & (z == 0 ? 0 : (int)strlen(z));
 }
 
 /*
