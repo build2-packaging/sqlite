@@ -8,6 +8,10 @@ import libs += libz%lib{z}
 
 exe{sqlite3}: {h c}{*} $libs testscript
 
+tclass = $c.target.class
+
+windows = ($tclass == 'windows')
+
 # @@ TMP Workaround GCC bug 84583:
 #
 #        shell.exe.o.i:165900:40: error: unterminated string literal
@@ -32,7 +36,11 @@ gcc = ($c.class == 'gcc')
 # This is the subset of features that we enable by default in libsqlite3 and
 # that affect the shell. They can be overridden in the same way.
 #
-c.poptions =+ -DSQLITE_ENABLE_COLUMN_METADATA -DSQLITE_ENABLE_SESSION=1 \
+c.poptions =+ -DSQLITE_ENABLE_COLUMN_METADATA=1 \
+              -DSQLITE_ENABLE_SESSION=1 \
+              -DSQLITE_ENABLE_MATH_FUNCTIONS=1 \
+              -DSQLITE_THREADSAFE=1 \
+              -DSQLITE_ENABLE_DBPAGE_VTAB=1 \
               -DSQLITE_HAVE_ZLIB
 
 # Both Debian and Fedora add this so gotta be important.
@@ -49,6 +57,9 @@ if $gcc
 #
 if $gcc
   c.coptions += -Wno-extra -Wno-error
+
+if! $windows
+  c.libs += -lm
 
 # Don't install INSTALL file.
 #

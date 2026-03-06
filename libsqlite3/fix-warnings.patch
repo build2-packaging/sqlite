@@ -1,8 +1,8 @@
 diff --git a/libsqlite3/libsqlite3/sqlite3.c b/libsqlite3/libsqlite3/sqlite3.c
-index 08c593e..e059500 100644
+index dd48ee6..cc1f328 100644
 --- a/libsqlite3/libsqlite3/sqlite3.c
 +++ b/libsqlite3/libsqlite3/sqlite3.c
-@@ -33969,6 +33969,7 @@ SQLITE_PRIVATE int sqlite3ThreadJoin(SQLiteThread *p, void **ppOut){
+@@ -35187,6 +35187,7 @@ SQLITE_PRIVATE int sqlite3ThreadJoin(SQLiteThread *p, void **ppOut){
      assert( rc!=WAIT_IO_COMPLETION );
      bRc = CloseHandle((HANDLE)p->tid);
      assert( bRc );
@@ -10,3 +10,11 @@ index 08c593e..e059500 100644
    }
    if( rc==WAIT_OBJECT_0 ) *ppOut = p->pResult;
    sqlite3_free(p);
+@@ -144318,6 +144319,7 @@ SQLITE_PRIVATE void sqlite3Pragma(
+         if( tableSkipIntegrityCheck(pTab,pObjTab) ) continue;
+         if( HasRowid(pTab) ) cnt++;
+         for(nIdx=0, pIdx=pTab->pIndex; pIdx; pIdx=pIdx->pNext, nIdx++){ cnt++; }
++        (void)nIdx; /* Unused. */
+       }
+       if( cnt==0 ) continue;
+       if( pObjTab ) cnt++;

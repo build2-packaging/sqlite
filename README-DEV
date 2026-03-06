@@ -8,8 +8,8 @@ that we package separately (see the respective README-DEV files for details).
 We extract the upstream package from the archive and symlink the required files
 into the build2 package subdirectories.
 
-For 3.45.3 the archive URL is
-https://www.sqlite.org/2024/sqlite-autoconf-3450300.tar.gz. For the future
+For 3.51.2 the archive URL is
+https://sqlite.org/2026/sqlite-autoconf-3510200.tar.gz. For the future
 releases the URL can be deduced from the above.
 
 The upstream package can be configured to contain a specific feature set. We
@@ -18,11 +18,11 @@ Debian and Fedora distributions. The configuration options defining these sets
 are specified in the Debian's rules and Fedora's RPM .spec files. These files
 can be obtained as follows:
 
-$ wget https://deb.debian.org/debian/pool/main/s/sqlite3/sqlite3_3.45.3-1.debian.tar.xz
-$ tar xf sqlite3_3.45.3-1.debian.tar.xz debian/rules
+$ wget https://deb.debian.org/debian/pool/main/s/sqlite3/sqlite3_3.46.1-9.debian.tar.xz
+$ tar xf sqlite3_3.46.1-9.debian.tar.xz debian/rules
 
-$ wget https://kojipkgs.fedoraproject.org/packages/sqlite/3.45.3/1.fc41/src/sqlite-3.45.3-1.fc41.src.rpm
-$ rpm2cpio sqlite-3.45.3-1.fc41.src.rpm | cpio -civ '*.spec'
+$ wget https://kojipkgs.fedoraproject.org/packages/sqlite/3.51.2/1.fc44/src/sqlite-3.51.2-1.fc44.src.rpm
+$ rpm2cpio sqlite-3.51.2-1.fc44.src.rpm | cpio -civ '*.spec'
 
 Some of the features are enabled via the preprocessor macro definitions and
 others via the configure script options. Here are the discovered configuration
@@ -44,7 +44,7 @@ Debian:
   -DSQLITE_ENABLE_JSON1
   -DSQLITE_LIKE_DOESNT_MATCH_BLOBS
   -DSQLITE_THREADSAFE=1
-  -DSQLITE_ENABLE_FTS3_TOKENIZER=1
+  -DSQLITE_ENABLE_DBPAGE_VTAB
   -DSQLITE_USE_URI=1
   -DSQLITE_MAX_SCHEMA_RETRY=25
   -DSQLITE_ENABLE_PREUPDATE_HOOK
@@ -68,14 +68,16 @@ Fedora:
   -DSQLITE_ENABLE_UNLOCK_NOTIFY=1
   -DSQLITE_ENABLE_DBSTAT_VTAB=1
   -DSQLITE_ENABLE_FTS3_PARENTHESIS=1
+  -DSQLITE_ENABLE_STMT_SCANSTATUS
   -DSQLITE_ENABLE_DBPAGE_VTAB
+  -DSQLITE_ENABLE_SESSION
+  -DSQLITE_ENABLE_PREUPDATE_HOOK
 
   --enable-rtree
   --enable-fts3
   --enable-fts4
   --enable-fts5
   --enable-threadsafe
-  --enable-threads-override-locks
   --enable-load-extension
 
 Note that if zlib.h is present in the system then upstream's configure script
@@ -83,9 +85,9 @@ automatically enables functionality that uses zlib, which is the case for both
 distributions.
 
 Translating the configure script options into the macro definitions and adding
-the recommended (harmless but potentially useful)
-SQLITE_ENABLE_EXPLAIN_COMMENTS macro definition (see upstream's Makefile.am
-and configure.ac for details) we end up with:
+unconditional SQLITE_ENABLE_PERCENTILE and the recommended (harmless but
+potentially useful) SQLITE_ENABLE_EXPLAIN_COMMENTS macro definitions (see
+upstream's Makefile.am and configure.ac for details) we end up with:
 
   -DSQLITE_ALLOW_ROWID_IN_VIEW=1
   -DSQLITE_ENABLE_COLUMN_METADATA=1
@@ -94,19 +96,20 @@ and configure.ac for details) we end up with:
   -DSQLITE_ENABLE_EXPLAIN_COMMENTS=1
   -DSQLITE_ENABLE_FTS3=1
   -DSQLITE_ENABLE_FTS3_PARENTHESIS=1
-  -DSQLITE_ENABLE_FTS3_TOKENIZER=1
   -DSQLITE_ENABLE_FTS4=1
   -DSQLITE_ENABLE_FTS5=1
   -DSQLITE_ENABLE_GEOPOLY=1
   -DSQLITE_ENABLE_JSON1=1
   -DSQLITE_ENABLE_LOAD_EXTENSION=1
   -DSQLITE_ENABLE_MATH_FUNCTIONS=1
+  -DSQLITE_ENABLE_PERCENTILE=1
   -DSQLITE_ENABLE_PREUPDATE_HOOK=1
   -DSQLITE_ENABLE_RTREE=1
   -DSQLITE_ENABLE_SESSION=1
   -DSQLITE_ENABLE_STMTVTAB=1
   -DSQLITE_ENABLE_UNLOCK_NOTIFY=1
   -DSQLITE_ENABLE_UPDATE_DELETE_LIMIT=1
+  -DSQLITE_ENABLE_STMT_SCANSTATUS=1
   -DSQLITE_HAVE_ZLIB
   -DSQLITE_LIKE_DOESNT_MATCH_BLOBS=1
   -DSQLITE_MAX_SCHEMA_RETRY=25
