@@ -10,6 +10,7 @@ windows = ($tclass == 'windows')
 
 gcc        = ($c.class == 'gcc')
 clang_msvc = ($c.id == 'clang' && $c.target.system == 'win32-msvc')
+msvc       = ($c.class == 'msvc')
 
 # Build options.
 #
@@ -110,6 +111,11 @@ if $clang_msvc
 #
 if $gcc
   c.coptions += -Wno-extra -Wno-error
+
+# Also disable treating VC warnings as errors.
+#
+if $msvc
+  c.coptions += /WX-
 
 # Export options.
 #

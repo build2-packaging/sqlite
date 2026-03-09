@@ -12,6 +12,9 @@ tclass = $c.target.class
 
 windows = ($tclass == 'windows')
 
+gcc  = ($c.class == 'gcc')
+msvc = ($c.class == 'msvc')
+
 # @@ TMP Workaround GCC bug 84583:
 #
 #        shell.exe.o.i:165900:40: error: unterminated string literal
@@ -20,8 +23,6 @@ windows = ($tclass == 'windows')
 #
 if ($c.id == 'gcc' && $c.target.system == 'mingw32')
   obj{shell}: cc.reprocess = true
-
-gcc = ($c.class == 'gcc')
 
 # Build options.
 #
@@ -57,6 +58,11 @@ if $gcc
 #
 if $gcc
   c.coptions += -Wno-extra -Wno-error
+
+# Also disable treating VC warnings as errors.
+#
+if $msvc
+  c.coptions += /WX-
 
 if! $windows
   c.libs += -lm
