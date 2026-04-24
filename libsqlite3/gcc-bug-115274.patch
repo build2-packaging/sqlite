@@ -1,5 +1,5 @@
 diff --git a/libsqlite3/libsqlite3/sqlite3.c b/libsqlite3/libsqlite3/sqlite3.c
-index 507e406..b2d9f29 100644
+index 7aecebc..8c21eae 100644
 --- a/libsqlite3/libsqlite3/sqlite3.c
 +++ b/libsqlite3/libsqlite3/sqlite3.c
 @@ -35958,8 +35958,7 @@ SQLITE_PRIVATE int sqlite3IsOverflow(double x){
@@ -10,5 +10,5 @@ index 507e406..b2d9f29 100644
 -  return 0x3fffffff & (int)strlen(z);
 +  return 0x3fffffff & (z == 0 ? 0 : (int)strlen(z));
  }
-
+ 
  /*
