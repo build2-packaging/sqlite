@@ -12,8 +12,19 @@ Also apply the following patches:
 
 $ mv sqlite3.c sqlite3.c.orig
 $ cp sqlite3.c.orig sqlite3.c
-$ git apply ../fix-warnings.patch   # Fixes warnings that pop up with -Wall.
-$ git apply ../gcc-bug-115274.patch # See https://gcc.gnu.org/bugzilla/show_bug.cgi?id=115274 for details.
+
+# Fix warnings that pop up with -Wall.
+#
+$ git apply ../fix-warnings-wall.patch
+
+# Fix 'initialization discards ‘const’ qualifier' warnings which pop up for
+# GCC 16 and glibc 2.43 at some strchr() and alike functions call sites.
+#
+$ git apply ../fix-warnings-strchr.patch
+
+# See https://gcc.gnu.org/bugzilla/show_bug.cgi?id=115274 for details.
+#
+$ git apply ../gcc-bug-115274.patch
 
 $ popd
 
