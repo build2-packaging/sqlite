@@ -14,10 +14,10 @@ SELECT * FROM test;'
 : archive
 :
 {
-  echo 'abc' >=f.txt;
-  $* f.sqlar -Ac f.txt &f.sqlar; # Creates archive adding a file.
-  $* f.sqlar -At >f.txt;         # Lists files in archive.
-  rm f.txt;
-  $* f.sqlar -Ax;                # Extracts files from archive.
+  echo 'abc' >=f.txt
+  $* f.sqlar -Ac f.txt &f.sqlar # Creates archive adding a file.
+  $* f.sqlar -At >f.txt         # Lists files in archive.
+  rm f.txt
+  $* f.sqlar -Ax                # Extracts files from archive.
   cat f.txt >'abc'
 }

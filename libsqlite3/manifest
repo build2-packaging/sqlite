@@ -14,5 +14,5 @@ email: sqlite-users@mailinglists.sqlite.org ; Mailing list.
 package-email: packaging@build2.org         ; Mailing list.
 build-error-email: builds@build2.org
 builds: all
-depends: * build2 >= 0.15.0
-depends: * bpkg >= 0.15.0
+depends: * build2 >= 0.18.0
+depends: * bpkg >= 0.18.0
