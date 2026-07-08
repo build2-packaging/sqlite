@@ -21,8 +21,8 @@ msvc = ($c.class == 'msvc')
 #
 #        Note: on upgrade check if it is still required.
 #
-if ($c.id == 'gcc' && $c.target.system == 'mingw32')
-  obj{shell}: cc.reprocess = true
+#if ($c.id == 'gcc' && $c.target.system == 'mingw32')
+#  obj{shell}: cc.reprocess = true
 
 # Build options.
 #
