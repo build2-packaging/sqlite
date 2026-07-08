@@ -1,8 +1,8 @@
 diff --git a/libsqlite3/libsqlite3/sqlite3.c b/libsqlite3/libsqlite3/sqlite3.c
-index 7aecebc..8c21eae 100644
+index 3c3ef64..67176c0 100644
 --- a/libsqlite3/libsqlite3/sqlite3.c
 +++ b/libsqlite3/libsqlite3/sqlite3.c
-@@ -35958,8 +35958,7 @@ SQLITE_PRIVATE int sqlite3IsOverflow(double x){
+@@ -36478,8 +36478,7 @@ SQLITE_PRIVATE int sqlite3IsOverflow(double x){
  ** than 1GiB) the value returned might be less than the true string length.
  */
  SQLITE_PRIVATE int sqlite3Strlen30(const char *z){

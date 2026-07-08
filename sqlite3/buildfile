@@ -42,6 +42,7 @@ c.poptions =+ -DSQLITE_ENABLE_COLUMN_METADATA=1 \
               -DSQLITE_ENABLE_MATH_FUNCTIONS=1 \
               -DSQLITE_THREADSAFE=1 \
               -DSQLITE_ENABLE_DBPAGE_VTAB=1 \
+              -DSQLITE_ENABLE_CARRAY=1 \
               -DSQLITE_HAVE_ZLIB
 
 # Both Debian and Fedora add this so gotta be important.

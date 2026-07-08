@@ -1,0 +1,15 @@
+diff --git a/sqlite3/shell.c b/sqlite3/shell.c
+index f9bfe1a..9cea5ed 100644
+--- a/sqlite3/shell.c
++++ b/sqlite3/shell.c
+@@ -37049,8 +37049,10 @@ int SQLITE_CDECL main(int argc, char **argv){
+       }
+       open_db(&data, OPEN_DB_ZIPFILE);
+       if( z[2] ){
++        char *tmp = argv[i];
+         argv[i] = &z[2];
+         arDotCommand(&data, 1, argv+(i-1), argc-(i-1));
++        argv[i] = tmp;
+       }else{
+         arDotCommand(&data, 1, argv+i, argc-i);
+       }

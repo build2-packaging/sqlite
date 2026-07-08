@@ -59,7 +59,8 @@ c.poptions =+ \
   -DSQLITE_SECURE_DELETE=1 \
   -DSQLITE_SOUNDEX=1 \
   -DSQLITE_THREADSAFE=1 \
-  -DSQLITE_USE_URI=1
+  -DSQLITE_USE_URI=1 \
+  -DSQLITE_ENABLE_CARRAY=1
 
 # Raise the maximum number of attached databases from 10 up to the limit.
 #

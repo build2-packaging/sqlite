@@ -17,11 +17,6 @@ $ cp sqlite3.c.orig sqlite3.c
 #
 $ git apply ../fix-warnings-wall.patch
 
-# Fix 'initialization discards ‘const’ qualifier' warnings which pop up for
-# GCC 16 and glibc 2.43 at some strchr() and alike functions call sites.
-#
-$ git apply ../fix-warnings-strchr.patch
-
 # See https://gcc.gnu.org/bugzilla/show_bug.cgi?id=115274 for details.
 #
 $ git apply ../gcc-bug-115274.patch
@@ -30,4 +25,5 @@ $ popd
 
 Also note that patches are produced by commands similar to the following:
 
-$ git diff >fix-warnings.patch
+$ git diff >/tmp/fix-warnings-wall.patch
+$ mv /tmp/fix-warnings-wall.patch .

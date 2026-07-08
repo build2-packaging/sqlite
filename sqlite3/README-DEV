@@ -5,3 +5,15 @@ version. See ../README-DEV for general notes on SQLite packaging.
 Symlink the required upstream files:
 
 $ ln -s ../upstream/{shell.c,sqlite3.1} ./
+
+Also apply the following patches:
+
+$ mv shell.c shell.c.orig
+$ cp shell.c.orig shell.c
+
+$ git apply fix-invalid-free.patch
+
+Also note that patches are produced by commands similar to the following:
+
+$ git diff >/tmp/fix-invalid-free.patch
+$ mv /tmp/fix-invalid-free.patch .
