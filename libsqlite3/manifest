@@ -1,6 +1,6 @@
 : 1
 name: libsqlite3
-version: 3.53.3-a.0.z
+version: 3.53.3
 project: sqlite
 summary: SQL database engine as an in-process C library
 license: blessing ; SQLite Blessing.
